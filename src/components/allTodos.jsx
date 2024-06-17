@@ -9,7 +9,7 @@ const Todos = () => {
   const navigate = useNavigate();
 
   const fetchAllTodos = async () => {
-    const response = await fetch("http://localhost:3000");
+    const response = await fetch("https://todo-application-60gq.onrender.com");
     const data = await response.json();
     setTodos(data);
   };
@@ -20,7 +20,7 @@ const Todos = () => {
 
   const handleComplete = async (todoId, currentStatus) => {
     try {
-      await fetch("http://localhost:3000/update", {
+      await fetch("https://todo-application-60gq.onrender.com/update", {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const Todos = () => {
   };
   async function deleteTodo(todoId) {
     try{
-      await fetch("http://localhost:3000/delete", {
+      await fetch("https://todo-application-60gq.onrender.com/delete", {
         method: "DELETE",
         headers:{
           'Content-Type':'application/json',

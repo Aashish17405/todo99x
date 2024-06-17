@@ -9,7 +9,7 @@ const Completedtodos = () => {
     const navigate = useNavigate();
 
     async function fetchTodos() {
-        const response = await fetch("http://localhost:3000");
+        const response = await fetch("https://todo-application-60gq.onrender.com");
         const data =await response.json();
         const data1 = data.filter(completedTodos);
         setTodos(data1);
@@ -23,7 +23,7 @@ const Completedtodos = () => {
 
     const handleComplete = async (todoId, currentStatus) => {
       try {
-          await fetch("http://localhost:3000/update", {
+          await fetch("https://todo-application-60gq.onrender.com/update", {
               method: "PATCH",
               headers: {
                   'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Completedtodos = () => {
     };
     async function deleteTodo(todoId) {
         try{
-          await fetch("http://localhost:3000/delete", {
+          await fetch("https://todo-application-60gq.onrender.com/delete", {
             method: "DELETE",
             headers:{
               'Content-Type':'application/json',

@@ -9,7 +9,7 @@ const Incompletetodos = () => {
     const navigate = useNavigate();
 
     const fetchTodos = useCallback(async (a) =>{
-      const response = await fetch("http://localhost:3000");
+      const response = await fetch("https://todo-application-60gq.onrender.com");
       const data = await response.json();
       const filteredData = data.filter(incompleteTodos);
       setTodos(filteredData);
@@ -22,7 +22,7 @@ const Incompletetodos = () => {
 
     const handleComplete = async (todoId, currentStatus) => {
       try {
-          await fetch("http://localhost:3000/update", {
+          await fetch("https://todo-application-60gq.onrender.com/update", {
               method: "PATCH",
               headers: {
                   'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const Incompletetodos = () => {
     };
     async function deleteTodo(todoId) {
       try{
-        await fetch("http://localhost:3000/delete", {
+        await fetch("https://todo-application-60gq.onrender.com/delete", {
           method: "DELETE",
           headers:{
             'Content-Type':'application/json',
