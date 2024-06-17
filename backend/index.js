@@ -8,11 +8,12 @@ const bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+
 const port = process.env.PORT || 3000;
+
 app.get('/', async (req, res) => {
     try {
         const todos = await todo.find();
-        // console.log(todos);
         res.json(todos);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
@@ -61,8 +62,8 @@ app.delete('/delete', async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: "Deletion failed" });
     }
-})
+});
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on port ${port}`);
-  });
+});
