@@ -8,7 +8,7 @@ import Todos from './components/allTodos';
 
 function App() {
   return (
-    <div className='min-h-screen flex justify-center items-center'>
+    <div className='flex justify-center items-center'>
       
       <ToastContainer
         position="top-center"
