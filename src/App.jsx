@@ -8,27 +8,24 @@ import Todos from './components/allTodos';
 
 function App() {
   return (
-    <div>
+    <div className='min-h-screen flex justify-center items-center'>
       
-      <div className='flex justify-center items-center'>
-        
-        <ToastContainer
-          position="top-center"
-          autoClose= {3000}
-          closeOnClick= {true}
-          theme="dark"
-          draggable
-        />
-        
-        <Router>
-          <Routes>
-            <Route path="/" element={<Todos />} />
-            <Route path="/i" element={<Incompletetodos />} />
-            <Route path="/c" element={<Completedtodos />} />
-          </Routes>
-        </Router>
-      </div>
-      </div>
+      <ToastContainer
+        position="top-center"
+        autoClose= {2000}
+        closeOnClick= {true}
+        theme="dark"
+        draggable
+      />
+      
+      <Router>
+        <Routes>
+          <Route path="/" element={<Todos />} />
+          <Route path="/i" element={<Incompletetodos />} />
+          <Route path="/c" element={<Completedtodos />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

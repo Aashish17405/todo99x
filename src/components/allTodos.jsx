@@ -84,7 +84,7 @@ const Todos = () => {
 
   return (
     <div>
-      <h1 className='ml-10 text-5xl mt-24 font-extrabold'>Todo Application</h1>
+      <h1 className='ml-12 mt-24 text-5xl font-extrabold sm:ml-10 sm:mt-24'>Todo Application</h1>
       <CreateTodos />      
       <ul className="flex space-x-10 mt-5">
         <button className="bg-black border border-gray-300 py-2 px-4 rounded-full ml-6 hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/')}>All Todos</button>
@@ -111,7 +111,7 @@ const Todos = () => {
         ))}
       </div>
       {isLoading && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center">
           <ThreeDots
             visible={true}
             height={80}
