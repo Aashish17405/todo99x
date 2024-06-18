@@ -11,7 +11,7 @@ export default {
   theme: {
     extend: {
       width: {
-        '96': '24rem',
+        '96': '28rem',
       },
       colors: {
         'blue':'#74F0ED',
