@@ -58,21 +58,21 @@ function CreateTodos() {
 
   return (
     <>
-      <div className='flex justify-between mt-10 ml-3'>
+      <div className='my-8 flex justify-center sm:mt-10 sm:ml-3'>
         <input
-          className="shadow-md bg-black w-96 h-12 py-2 px-6 ml-0 m-2 rounded-full border border-gray-300"
+          className="px-5 py-2 bg-black sm:w-96 sm:h-12 sm:py-2 sm:px-6 sm:ml-0 sm:m-2 rounded-full border border-gray-300"
           type='text'
           placeholder='Todo'
           value={todo}
           onChange={handleChange}
         />
         <button
-          className="shadow-xl bg-black hover:bg-blue hover:text-black px-3 rounded-full mt-2 h-12"
+          className="border border-gray-300 ml-2 rounded-full px-2 sm:bg-black sm:hover:bg-blue sm:hover:text-black sm:px-3 sm:rounded-full sm:mt-2 sm:h-12"
           onClick={handleSubmit}
           disabled={isLoading}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
         </button>
         {isLoading && (
