@@ -4,8 +4,6 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
-import Button from "./Buttons";
-import Heading from "./Heading";
 
 const Completedtodos = () => {
   const [todos, setTodos] = useState([]);
@@ -87,9 +85,13 @@ const Completedtodos = () => {
 
   return (
     <div>
-      <Heading/>
+      <h1 className='ml-20 mt-20 font-extrabold text-2xl sm:ml-10 sm:mt-24 sm:font-extrabold sm:text-5xl'>Todo Application</h1>
       <CreateTodos />
-      <Button/>
+      <ul className="sm:flex sm:space-x-10 sm:mt-5">
+        <button className="ml-10 px-2 py-2 bg-black text-xs sm:text-base border border-gray-300 py-2 sm:px-4 rounded-full sm:ml-6 hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/')}>All Todos</button>
+        <button className="p-2 ml-2 bg-black border text-xs sm:text-base border-gray-300 sm:py-2 sm:px-4 rounded-full hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/c')}>Completed Todos</button>
+        <button className="p-2 ml-2 bg-black border text-xs sm:text-base border-gray-300 sm:py-2 sm:px-4 rounded-full hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/i')}>Active Todos</button>
+      </ul>
       <div>
         {todos && todos.map((tod) => (
           <div key={tod._id} className="m-10 flex items-center">
