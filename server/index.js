@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
-const mongoURI = process.env.MONGODB_URI || 'your-default-mongo-uri-here';
+const mongoURI = process.env.MONGODB_URI;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
