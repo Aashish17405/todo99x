@@ -39,7 +39,7 @@ function CreateTodos() {
       setTodo("");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 1500);
     } catch (error) {
       toast.error("Failed to add todo");
       console.error("There was an error:", error);
