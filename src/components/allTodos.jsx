@@ -84,7 +84,7 @@ const Todos = () => {
 
   return (
     <div>
-      <h1 className='ml-20 mt-20 font-extrabold text-2xl sm:ml-10 sm:mt-24 sm:font-extrabold sm:text-5xl'>Todo Application</h1>
+      <h1 className='ml-32 mt-20 font-extrabold text-2xl sm:ml-36 sm:mt-24 sm:font-extrabold sm:text-5xl'>Todo99x</h1>
       <CreateTodos />      
       <ul className="sm:flex sm:space-x-10 sm:mt-5">
         <button className="ml-10 px-2 py-2 bg-black text-xs sm:text-base border border-gray-300 py-2 sm:px-4 rounded-full sm:ml-6 hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/')}>All Todos</button>
