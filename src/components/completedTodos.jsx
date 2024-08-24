@@ -13,7 +13,7 @@ const Completedtodos = () => {
   const fetchTodos = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://todo-application-iqpc.onrender.com");
+      const response = await fetch("https://todo99x.onrender.com");
       if (!response.ok) {
         throw new Error('Failed to fetch todos');
       }
@@ -35,7 +35,7 @@ const Completedtodos = () => {
   const handleComplete = async (todoId, currentStatus) => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://todo-application-iqpc.onrender.com/update", {
+      const response = await fetch("https://todo99x.onrender.com/update", {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const Completedtodos = () => {
   const deleteTodo = async (todoId) => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://todo-application-iqpc.onrender.com/delete", {
+      const response = await fetch("https://todo99x.onrender.com/delete", {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
