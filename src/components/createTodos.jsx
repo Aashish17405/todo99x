@@ -20,7 +20,7 @@ function CreateTodos() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://todo-application-60gq.onrender.com/add", {
+      const response = await fetch("https://todo99x.onrender.com/add", {
         method: "POST",
         headers: {
           'Content-type': "application/json",
