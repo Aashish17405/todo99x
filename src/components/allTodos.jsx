@@ -4,11 +4,13 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Todos = () => {
   const [todos, setTodos] = useState([]);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { logout } = useAuth0();
 
   const fetchAllTodos = async () => {
     setIsLoading(true);
@@ -87,9 +89,9 @@ const Todos = () => {
       <h1 className='ml-32 mt-20 font-extrabold text-2xl sm:ml-36 sm:mt-24 sm:font-extrabold sm:text-5xl'>Todo99x</h1>
       <CreateTodos />      
       <ul className="sm:flex sm:space-x-10 sm:mt-5">
-        <button className="ml-10 px-2 py-2 bg-black text-xs sm:text-base border border-gray-300 py-2 sm:px-4 rounded-full sm:ml-6 hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/')}>All Todos</button>
-        <button className="p-2 ml-2 bg-black border text-xs sm:text-base border-gray-300 sm:py-2 sm:px-4 rounded-full hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/c')}>Completed Todos</button>
-        <button className="p-2 ml-2 bg-black border text-xs sm:text-base border-gray-300 sm:py-2 sm:px-4 rounded-full hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/i')}>Active Todos</button>
+        <button className="ml-10 px-2 py-2 bg-black text-xs sm:text-base border border-gray-300 py-2 sm:px-4 rounded-full sm:ml-6 hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/alltodos')}>All Todos</button>
+        <button className="p-2 ml-2 bg-black border text-xs sm:text-base border-gray-300 sm:py-2 sm:px-4 rounded-full hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/completedtodos')}>Completed Todos</button>
+        <button className="p-2 ml-2 bg-black border text-xs sm:text-base border-gray-300 sm:py-2 sm:px-4 rounded-full hover:bg-red hover:text-black hover:border-black" onClick={() => navigate('/incompletetodos')}>Active Todos</button>
       </ul>
       <div>
         {todos && todos.map((tod) => (
@@ -110,6 +112,7 @@ const Todos = () => {
           </div>
         ))}
       </div>
+      <button className='px-2 py-2 bg-black text-xs sm:text-base border border-gray-300 sm:px-4 rounded-full sm:ml-52 hover:bg-red hover:text-black hover:border-black' onClick={(e) => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</button>
       {isLoading && (
         <div className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center">
           <ThreeDots

@@ -5,10 +5,12 @@ import 'react-toastify/dist/ReactToastify.css'
 import Incompletetodos from './components/incompleteTodos';
 import Completedtodos from './components/completedTodos';
 import Todos from './components/allTodos'; 
+import Login from './components/Login';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   return (
-    <div className='mt-4 flex justify-center items-center'>
+    <div className='flex justify-center items-center'>
       
       <ToastContainer
         position="top-center"
@@ -20,9 +22,11 @@ function App() {
       
       <Router>
         <Routes>
-          <Route path="/" element={<Todos />} />
-          <Route path="/i" element={<Incompletetodos />} />
-          <Route path="/c" element={<Completedtodos />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/alltodos" element={<Todos />} />
+          <Route path="/incompletetodos" element={<Incompletetodos />} />
+          <Route path="/completedtodos" element={<Completedtodos />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
     </div>

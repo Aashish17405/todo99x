@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth0 } from "@auth0/auth0-react";
 import { ThreeDots } from 'react-loader-spinner';
 
 function CreateTodos() {
   const [todo, setTodo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { logout } = useAuth0();
 
   function validTodo() {
     return todo.trim() !== "";
