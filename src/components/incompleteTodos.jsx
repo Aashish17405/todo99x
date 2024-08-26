@@ -14,6 +14,7 @@ const Incompletetodos = () => {
 
   const fetchTodos = (async () => {
     if (!user || !user.sub) {
+      navigate('/');
       console.error("User is not logged in or user object is not available");
       return;
     }
@@ -42,6 +43,7 @@ const Incompletetodos = () => {
 
   const handleComplete = async (todoId, currentStatus) => {
     if (!user || !user.sub) {
+      navigate('/');
       console.error("User is not logged in or user object is not available");
       return;
     }
@@ -73,6 +75,7 @@ const Incompletetodos = () => {
 
   const deleteTodo = async (todoId) => {
     if (!user || !user.sub) {
+      navigate('/');
       console.error("User is not logged in or user object is not available");
       return;
     }
