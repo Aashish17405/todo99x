@@ -21,7 +21,8 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get('/', async (req, res) => {
     try {
-        const todos = await todo.find();
+        const userId = req.query.userId;
+        const todos = await todo.find({ userId });
         res.json(todos);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
@@ -44,6 +45,7 @@ app.post('/add', async (req, res) => {
         await todo.create({
             todo: createPayload.todo,
             completed: false,
+            userId: createPayload.userId
         });
         res.json({ msg: "Successfully created todo" });
     } catch (error) {
@@ -52,25 +54,42 @@ app.post('/add', async (req, res) => {
     }
 });
 
+
 app.patch('/update', async (req, res) => {
     try {
-        const { todoId, todoCompleted } = req.body;
-        const updatedTodo = await todo.findByIdAndUpdate(todoId, { completed: todoCompleted });
-        res.json({ msg: "Successfully updated todo"});
+        const { todoId, todoCompleted, userId } = req.body;
+        const todoItem = await todo.findOne({ _id: todoId, userId });
+        if (!todoItem) {
+            return res.status(404).json({ msg: "Todo not found or unauthorized access" });
+        }
+        todoItem.completed = todoCompleted;
+        await todoItem.save();
+        res.json({ msg: "Successfully updated todo" });
     } catch (err) {
+        console.error("Error updating todo:", err);
         res.status(500).json({ msg: "Updation failed" });
     }
 });
 
 app.delete('/delete', async (req, res) => {
     try {
-        const { todoId } = req.body;
+        const { todoId, userId } = req.body;
+
+        const todoItem = await todo.findOne({ _id: todoId, userId });
+
+        if (!todoItem) {
+            return res.status(404).json({ msg: "Todo not found or unauthorized access" });
+        }
+
         await todo.findByIdAndDelete(todoId);
+
         res.json({ msg: "Successfully deleted todo" });
     } catch (err) {
+        console.error("Error deleting todo:", err);
         res.status(500).json({ msg: "Deletion failed" });
     }
 });
+
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on port ${port}`);
