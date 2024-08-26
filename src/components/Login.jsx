@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-    const { user, loginWithRedirect, isAuthenticated } = useAuth0();
+    const { user, loginWithRedirect, isAuthenticated } = useAuth0(); // Auth0 hooks to manage authentication
     const navigate = useNavigate();
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -24,17 +24,19 @@ function Login() {
     useEffect(() => {
         const updateCursorPosition = () => {
             setCursorPosition(prev => ({
-                x: prev.x + (mousePosition.x - prev.x) * 0.15, // Increased speed for faster chase
+                x: prev.x + (mousePosition.x - prev.x) * 0.15,
                 y: prev.y + (mousePosition.y - prev.y) * 0.15
             }));
         };
 
-        const intervalId = setInterval(updateCursorPosition, 16); // ~60fps
+        const intervalId = setInterval(updateCursorPosition, 16);
 
         return () => clearInterval(intervalId);
     }, [mousePosition]);
 
+    // If the user is authenticated, redirect them to the '/alltodos' page
     if (isAuthenticated) {
+        // Navigate to '/alltodos' where you will fetch todos based on the user's ID
         navigate('/alltodos');
         return null;
     }

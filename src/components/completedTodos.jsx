@@ -10,12 +10,16 @@ const Completedtodos = () => {
   const [todos, setTodos] = useState([]);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { logout } = useAuth0();
+  const { logout,user } = useAuth0();
 
   const fetchTodos = async () => {
+    if (!user || !user.sub) {
+      console.error("User is not logged in or user object is not available");
+      return;
+    }
     setIsLoading(true);
     try {
-      const response = await fetch("https://todo99x.onrender.com");
+      const response = await fetch(`https://todo99x.onrender.com?userId=${user.sub}`);
       if (!response.ok) {
         throw new Error('Failed to fetch todos');
       }
@@ -31,10 +35,16 @@ const Completedtodos = () => {
   };
 
   useEffect(() => {
-    fetchTodos();
-  }, []);
+    if(user){
+      fetchTodos();
+    }
+  }, [user]);
 
   const handleComplete = async (todoId, currentStatus) => {
+    if (!user || !user.sub) {
+      console.error("User is not logged in or user object is not available");
+      return;
+    }
     setIsLoading(true);
     try {
       const response = await fetch("https://todo99x.onrender.com/update", {
@@ -45,6 +55,7 @@ const Completedtodos = () => {
         body: JSON.stringify({
           todoId,
           todoCompleted: !currentStatus,
+          userId: user.sub,
         }),
       });
       if (!response.ok) {
@@ -61,6 +72,10 @@ const Completedtodos = () => {
   };
 
   const deleteTodo = async (todoId) => {
+    if (!user || !user.sub) {
+      console.error("User is not logged in or user object is not available");
+      return;
+    }
     setIsLoading(true);
     try {
       const response = await fetch("https://todo99x.onrender.com/delete", {
@@ -70,6 +85,7 @@ const Completedtodos = () => {
         },
         body: JSON.stringify({
           todoId,
+          userId: user.sub,
         }),
       });
       if (!response.ok) {

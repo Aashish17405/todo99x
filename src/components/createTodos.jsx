@@ -7,13 +7,13 @@ import { ThreeDots } from 'react-loader-spinner';
 function CreateTodos() {
   const [todo, setTodo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { logout } = useAuth0();
+  const { user } = useAuth0();
 
   function validTodo() {
     return todo.trim() !== "";
   }
 
-  async function addTodo() {
+  async function addTodo(newTodo) {
     if (!validTodo()) {
       toast.error("Please enter a todo");
       return;
@@ -22,13 +22,14 @@ function CreateTodos() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://todo99x.onrender.com/add", {
+      const response = await fetch("http://localhost:3001/add", {
         method: "POST",
         headers: {
           'Content-type': "application/json",
         },
         body: JSON.stringify({
-          todo: todo,
+          todo: newTodo,
+          userId: user.sub,
         })
       });
 
@@ -38,10 +39,8 @@ function CreateTodos() {
 
       const json = await response.json();
       toast.success("Todo added successfully");
+      setTodo((todo) => [...todo, newTodo]);
       setTodo("");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
     } catch (error) {
       toast.error("Failed to add todo");
       console.error("There was an error:", error);
@@ -55,7 +54,7 @@ function CreateTodos() {
   }
 
   function handleSubmit() {
-    addTodo();
+    addTodo(todo);
   }
 
   return (
@@ -70,7 +69,7 @@ function CreateTodos() {
         />
         <button
           className="border border-gray-300 ml-2 rounded-full px-2 sm:bg-black sm:hover:bg-blue sm:hover:text-black sm:px-3 sm:rounded-full sm:mt-2 sm:h-12"
-          onClick={handleSubmit}
+          onClick={()=>{handleSubmit()}}
           disabled={isLoading}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">

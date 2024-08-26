@@ -10,12 +10,18 @@ const Todos = () => {
   const [todos, setTodos] = useState([]);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { logout } = useAuth0();
+  const { logout,user } = useAuth0();
+
+  // console.log(user)
 
   const fetchAllTodos = async () => {
+    if (!user || !user.sub) {
+      console.error("User is not logged in or user object is not available");
+      return;
+    }
     setIsLoading(true);
     try {
-      const response = await fetch("https://todo99x.onrender.com");
+      const response = await fetch(`http://localhost:3001?userId=${user.sub}`);
       if (!response.ok) {
         throw new Error('Failed to fetch todos');
       }
@@ -29,14 +35,21 @@ const Todos = () => {
     }
   };
 
+
   useEffect(() => {
-    fetchAllTodos();
-  }, []);
+    if(user){
+      fetchAllTodos();
+    }
+  }, [user]);
 
   const handleComplete = async (todoId, currentStatus) => {
+    if (!user || !user.sub) {
+      console.error("User is not logged in or user object is not available");
+      return;
+    }
     setIsLoading(true);
     try {
-      const response = await fetch("https://todo99x.onrender.com/update", {
+      const response = await fetch("http://localhost:3001/update", {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
@@ -44,6 +57,7 @@ const Todos = () => {
         body: JSON.stringify({
           todoId,
           todoCompleted: !currentStatus,
+          userId: user.sub,
         }),
       });
       if (!response.ok) {
@@ -60,15 +74,20 @@ const Todos = () => {
   };
 
   const deleteTodo = async (todoId) => {
+    if (!user || !user.sub) {
+      console.error("User is not logged in or user object is not available");
+      return;
+    }
     setIsLoading(true);
     try {
-      const response = await fetch("https://todo99x.onrender.com/delete", {
+      const response = await fetch("http://localhost:3001/delete", {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           todoId,
+          userId: user.sub,
         }),
       });
       if (!response.ok) {
