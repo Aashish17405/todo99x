@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect} from "react";
 import CreateTodos from "./createTodos";
 import "../App.css";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ const Incompletetodos = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { logout,user } = useAuth0();
 
-  const fetchTodos = useCallback(async () => {
+  const fetchTodos = (async () => {
     if (!user || !user.sub) {
       console.error("User is not logged in or user object is not available");
       return;
@@ -32,7 +32,7 @@ const Incompletetodos = () => {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  });
 
   useEffect(() => {
     if(user){
@@ -129,7 +129,7 @@ const Incompletetodos = () => {
           </div>
         ))}
       </div>
-      <button className='px-2 py-2 bg-black text-xs sm:text-base border border-gray-300 sm:px-4 rounded-full sm:ml-52 hover:bg-red hover:text-black hover:border-black' onClick={(e) => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</button>
+      <button className='px-2 py-2 bg-black text-xs sm:mt-2  sm:text-base border border-gray-300 sm:px-4 rounded-full sm:ml-56 hover:bg-red hover:text-black hover:border-black' onClick={(e) => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</button>
       {isLoading && (
         <div className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center">
           <ThreeDots

@@ -39,7 +39,11 @@ function CreateTodos() {
 
       const json = await response.json();
       toast.success("Todo added successfully");
-      setTodo(""); // Clear the input after successful addition
+      setTodo("");
+      setTimeout(() => {
+        window.location.reload();
+        setIsLoading(true);
+      }, 2500);
     } catch (error) {
       toast.error("Failed to add todo");
       console.error("There was an error:", error);

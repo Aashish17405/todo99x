@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-    const { user, loginWithRedirect, isAuthenticated } = useAuth0(); // Auth0 hooks to manage authentication
+    const { loginWithRedirect, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -34,9 +34,7 @@ function Login() {
         return () => clearInterval(intervalId);
     }, [mousePosition]);
 
-    // If the user is authenticated, redirect them to the '/alltodos' page
     if (isAuthenticated) {
-        // Navigate to '/alltodos' where you will fetch todos based on the user's ID
         navigate('/alltodos');
         return null;
     }
