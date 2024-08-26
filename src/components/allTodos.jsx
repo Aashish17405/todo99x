@@ -21,7 +21,7 @@ const Todos = () => {
     }
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001?userId=${user.sub}`);
+      const response = await fetch(`https://todo99x.onrender.com?userId=${user.sub}`);
       if (!response.ok) {
         throw new Error('Failed to fetch todos');
       }
@@ -49,7 +49,7 @@ const Todos = () => {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/update", {
+      const response = await fetch("https://todo99x.onrender.com/update", {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const Todos = () => {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/delete", {
+      const response = await fetch("https://todo99x.onrender.com/delete", {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
