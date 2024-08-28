@@ -35,7 +35,7 @@ function Login() {
     }, [mousePosition]);
 
     if (isAuthenticated) {
-        navigate('/callback/alltodos');
+        navigate('/alltodos');
         return null;
     }
 
