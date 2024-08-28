@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     domain="dev-5vnkaoeyvp4qqpzk.us.auth0.com"
     clientId="HGfNYP8W4ONYzrTvOklN0xjNpwAVnV1x"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin+'/callback'
     }}
   >
     <App />
