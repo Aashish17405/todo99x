@@ -36,7 +36,7 @@ function Login() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/alltodos');
+            navigate('/callback/alltodos');
         }
     }, [isAuthenticated, navigate]);
 
