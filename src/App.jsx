@@ -7,6 +7,10 @@ import Completedtodos from './components/completedTodos';
 import Todos from './components/allTodos'; 
 import Login from './components/Login';
 import PageNotFound from './components/PageNotFound';
+import Callback from './components/Callback';  // Add this import
+
+
+
 
 function App() {
   return (
@@ -22,10 +26,11 @@ function App() {
       
       <Router>
         <Routes>
+          <Route path="/callback" element={<Callback />} />
           <Route path="/" element={<Login />} />
-          <Route path="/callback/alltodos" element={<Todos />} />
-          <Route path="/callback/incompletetodos" element={<Incompletetodos />} />
-          <Route path="/callback/completedtodos" element={<Completedtodos />} />
+          <Route path="/alltodos" element={<Todos />} />
+          <Route path="/incompletetodos" element={<Incompletetodos />} />
+          <Route path="/completedtodos" element={<Completedtodos />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>

@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-    const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+    const { loginWithRedirect, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -34,17 +34,8 @@ function Login() {
         return () => clearInterval(intervalId);
     }, [mousePosition]);
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            navigate('/callback/alltodos');
-        }
-    }, [isAuthenticated, navigate]);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
     if (isAuthenticated) {
+        navigate("/alltodos");
         return null;
     }
 
