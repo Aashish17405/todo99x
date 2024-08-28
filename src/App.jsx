@@ -23,9 +23,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/alltodos" element={<Todos />} />
-          <Route path="/incompletetodos" element={<Incompletetodos />} />
-          <Route path="/completedtodos" element={<Completedtodos />} />
+          <Route path="/callback/alltodos" element={<Todos />} />
+          <Route path="/callback/incompletetodos" element={<Incompletetodos />} />
+          <Route path="/callback/completedtodos" element={<Completedtodos />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
