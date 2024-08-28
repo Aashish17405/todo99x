@@ -7,10 +7,7 @@ import Completedtodos from './components/completedTodos';
 import Todos from './components/allTodos'; 
 import Login from './components/Login';
 import PageNotFound from './components/PageNotFound';
-import Callback from './components/Callback';  // Add this import
-
-
-
+import Callback from './components/Callback';
 
 function App() {
   return (
